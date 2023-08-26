@@ -28,3 +28,8 @@ true_c = true_a + true_b - float(comb(4,2) * comb(4,3) * comb(44,2) / total_hand
 print("experimental/theoretical P(A):", float(a)/TRIALS, true_a)
 print("experimental/theoretical P(B):", float(b)/TRIALS, true_b)
 print("experimental/theoretical P(C):", float(c)/TRIALS, true_c)
+
+# Results:
+# experimental/theoretical P(A): 0.005825 0.005817711700064641
+# experimental/theoretical P(B): 0.076572 0.07679379444085327
+# experimental/theoretical P(C): 0.082212 0.08244180045888705
