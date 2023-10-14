@@ -1,5 +1,6 @@
 from math import sqrt
 import random 
+import time
 
 def trial_division(n):
     if n < 2:
@@ -67,8 +68,16 @@ def stress1():
     #         print('i=',i,'MR:',MR[i-start])
 
 def stress2():
-    BIG_PRIME = 2 ** 127 - 1
-    print(fast_trial_division(BIG_PRIME))
-    # print(fermat(BIG_PRIME+1,10))
+    primes = [2**19-1, 2**31-1, 2**31-1, 2**107-1]
+    digits = [len(str(p)) for p in primes]
+    times = len(primes) * [0]
+
+    for p in primes:
+        start = time.time()
+        fast_trial_division(p)
+        stop = time.time()
+        times = stop - start
+
+    print(times)    
 
 stress2()
