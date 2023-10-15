@@ -68,16 +68,35 @@ def stress1():
     #         print('i=',i,'MR:',MR[i-start])
 
 def stress2():
-    primes = [2**19-1, 2**31-1, 2**31-1, 2**107-1]
+    primes = [2**19-1, 2**31-1, 2**31-1, 2**61-1]
     digits = [len(str(p)) for p in primes]
     times = len(primes) * [0]
+    k = 8
+    trials = 4
 
-    for p in primes:
-        start = time.time()
-        fast_trial_division(p)
-        stop = time.time()
-        times = stop - start
+    for t in range(trials):
+        for i,p in enumerate(primes):
+            start = time.time()
+            millerRabin(p, k)
+            stop = time.time()
+            times[i] += stop - start
 
-    print(times)    
+    print([t / trials for t in times])    
 
 stress2()
+
+# Trial Division
+# [0.03783106803894043, 180.85682368278503, 179.10301184654236, > 1hr]
+# [0.03332996368408203, 172.12513613700867, 171.46160888671875, > 1hr]
+# [0.03556, 176.45, 175.28, > 1hr]
+
+# Fast Trial Division
+# [2.7894973754882812e-05, 0.002130270004272461, 0.002077817916870117, 65.28326511383057]
+# [2.8133392333984375e-05, 0.002103090286254883, 0.002053976058959961, 65.70097780227661]
+# [0.000028, 0.00211, 0.00206, 65.492]
+
+# Fermat 
+# [2.950429916381836e-05, 7.772445678710938e-05, 7.611513137817383e-05, 0.00015437602996826172]
+
+# Miller-Rabin
+# [3.248453140258789e-05, 8.469820022583008e-05, 8.308887481689453e-05, 0.00016319751739501953]
